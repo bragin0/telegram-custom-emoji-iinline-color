@@ -1,61 +1,37 @@
-# telegram-custom-emoji-iinline-color
-Complete working example of handling Telegram &lt;tg-emoji> in messages and inline buttons, including colored inline button styles (primary, success, danger) using aiogram 3 and JSON storage.
+🎨 Telegram Custom Emoji & Inline Button Styles Demo
+🎨 Демо Telegram Custom Emoji и цветных Inline-кнопок
+<p align="center"> <b>Working example of <code>&lt;tg-emoji&gt;</code> in messages and inline buttons</b><br> aiogram 3 • Colored Styles • JSON Storage </p> <p align="center"> <img src="https://img.shields.io/badge/Python-3.10+-blue.svg"> <img src="https://img.shields.io/badge/aiogram-3.x-blue"> <img src="https://img.shields.io/badge/Telegram-Bot%20API-26A5E4"> <img src="https://img.shields.io/badge/License-MIT-green"> </p>
+🇬🇧 English
+🚀 Overview
 
-Telegram TG-Emoji & Inline Button Demo
-Демо Telegram TG-Emoji и Inline-кнопок
-🇬🇧 English Version
-Overview
+This repository demonstrates how to properly work with:
 
-This repository demonstrates how to properly handle Telegram <tg-emoji> in:
+✨ Premium animated emoji in messages
 
-Message text (premium animated emoji)
+🔘 Custom emoji in inline buttons
 
-Inline buttons (custom emoji icons)
+🎨 Colored inline button styles (primary, success, danger)
 
-Colored inline button styles
+💾 JSON-based storage
 
-JSON-based storage
+Built using aiogram 3.
 
-Built with aiogram 3.
+🔥 Features
+Feature	Supported
+<tg-emoji> in messages	✅
+Custom emoji in inline buttons	✅ (1 per button)
+Colored inline buttons	✅
+HTML formatting preserved	✅
+JSON storage	✅
+🔘 Inline Button Styles
 
-🚀 Features
-✅ Premium Emoji in Messages
-
-Telegram provides ready-to-use HTML via:
-
-message.html_text
-
-
-This preserves:
-
-<tg-emoji> entities
-
-Bold / italic formatting
-
-All valid HTML supported by Telegram
-
-✅ Custom Emoji in Inline Buttons
-
-Inline buttons support only ONE custom emoji via:
-
-icon_custom_emoji_id="..."
-
-
-⚠ Telegram limitation:
-
-Only one custom emoji can be used per inline button.
-
-If multiple <tg-emoji> are sent, only the first one can be extracted for the button icon.
-
-✅ Colored Inline Button Styles
-
-Telegram Bot API supports button styling:
+Telegram supports colored inline button styles:
 
 Style	Color
-primary	Blue
-success	Green
-danger	Red
-default	Default Telegram style
+primary	🔵 Blue
+success	🟢 Green
+danger	🔴 Red
+default	⚪ Default
 
 Example:
 
@@ -66,33 +42,19 @@ InlineKeyboardButton(
     callback_data="accept"
 )
 
-✅ JSON Storage
+⚠ Telegram Limitations
 
-Saved text (with HTML preserved) is stored in:
+Unlimited <tg-emoji> in messages
 
-{
-  "saved_text": "<tg-emoji emoji-id='...'>🔥</tg-emoji> Demo"
-}
+Only ONE icon_custom_emoji_id per inline button
 
-🛠 How It Works
-1️⃣ Save formatted HTML text
-def convert_to_html(message: Message) -> str:
-    return getattr(message, "html_text", message.text or "")
+Button emoji is static (not animated)
 
-2️⃣ Extract emoji for inline button
-match = re.search(r'emoji-id="(\d+)"', html_text)
-emoji_id = match.group(1) if match else None
-
-3️⃣ Create inline button
-InlineKeyboardButton(
-    text=text,
-    icon_custom_emoji_id=emoji_id,
-    callback_data="..."
-)
+Custom emoji requires Telegram Premium
 
 📦 Installation
-git clone https://github.com/YOUR_USERNAME/telegram-tg-emoji-inline-demo.git
-cd telegram-tg-emoji-inline-demo
+git clone https://github.com/YOUR_USERNAME/telegram-custom-emoji-inline-color.git
+cd telegram-custom-emoji-inline-color
 pip install -r requirements.txt
 
 
@@ -105,83 +67,37 @@ Run:
 
 python main.py
 
-⚠ Important Telegram Limitations
+🇷🇺 Русский
+🚀 Описание
 
-Unlimited <tg-emoji> allowed in messages
+Этот репозиторий демонстрирует, как правильно работать с:
 
-Only ONE icon_custom_emoji_id allowed in inline buttons
+✨ Premium-анимированными эмодзи в сообщениях
 
-Button emoji is static (not animated)
+🔘 Custom emoji во встроенных кнопках
 
-Bot owner must have Telegram Premium to use custom emoji
+🎨 Цветными стилями inline-кнопок (primary, success, danger)
 
-🧰 Tech Stack
-
-Python 3.10+
-
-aiogram 3.x
-
-Telegram Bot API
-
-JSON storage
-
-📄 License
-
-MIT
-
-🇷🇺 Русская версия
-Описание
-
-Этот репозиторий демонстрирует, как правильно работать с Telegram <tg-emoji>:
-
-В тексте сообщений (premium-анимация)
-
-В inline-кнопках (custom emoji)
-
-С цветными стилями кнопок
-
-С использованием JSON-хранилища
+💾 JSON-хранилищем
 
 Проект написан на aiogram 3.
 
-🚀 Возможности
-✅ Premium-эмодзи в тексте
+🔥 Возможности
+Возможность	Поддержка
+<tg-emoji> в тексте	✅
+Custom emoji в inline-кнопках	✅ (1 на кнопку)
+Цветные кнопки	✅
+Сохранение HTML	✅
+JSON-хранилище	✅
+🔘 Цветные стили кнопок
 
-Telegram автоматически передаёт HTML через:
-
-message.html_text
-
-
-Это сохраняет:
-
-<tg-emoji>
-
-Жирный / курсив
-
-Поддерживаемую HTML-разметку
-
-✅ Custom Emoji в inline-кнопках
-
-Inline-кнопка поддерживает только ОДИН custom emoji:
-
-icon_custom_emoji_id="..."
-
-
-⚠ Ограничение Telegram:
-
-В inline-кнопке можно использовать только один custom emoji.
-
-Если в тексте несколько <tg-emoji>, для кнопки можно извлечь только первый.
-
-✅ Цветные стили кнопок
-
-Telegram Bot API поддерживает стили:
+Telegram поддерживает стили:
 
 Стиль	Цвет
-primary	Синий
-success	Зелёный
-danger	Красный
-default	Стандартный
+primary	🔵 Синий
+success	🟢 Зелёный
+danger	🔴 Красный
+default	⚪ Стандартный
 
 Пример:
 
@@ -192,32 +108,15 @@ InlineKeyboardButton(
     callback_data="accept"
 )
 
-✅ JSON-хранилище
-
-Сохранённый текст хранится так:
-
-{
-  "saved_text": "<tg-emoji emoji-id='...'>🔥</tg-emoji> Demo"
-}
-
 ⚠ Ограничения Telegram
 
 В тексте можно использовать неограниченное количество <tg-emoji>
 
-В inline-кнопке — только один icon_custom_emoji_id
+В inline-кнопке можно использовать только один icon_custom_emoji_id
 
 Эмодзи в кнопке статичный
 
-Для custom emoji требуется Telegram Premium у владельца бота
-
-📦 Установка
-pip install -r requirements.txt
-python main.py
-
-
-В .env:
-
-API_TOKEN=ваш_токен_бота
+Для custom emoji требуется Telegram Premium
 
 🧰 Стек технологий
 
@@ -228,3 +127,7 @@ aiogram 3.x
 Telegram Bot API
 
 JSON
+
+📄 Лицензия
+
+MIT
