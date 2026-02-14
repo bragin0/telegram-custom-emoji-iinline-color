@@ -53,15 +53,14 @@
 <p><b>⚠ Telegram limitation:</b></p>
 
 <ul>
-  <li>Only one custom emoji can be used per inline button</li>
-  <li>If multiple <code>&lt;tg-emoji&gt;</code> are present, only the first one can be extracted</li>
+  <li>Only one custom emoji per inline button</li>
+  <li>If multiple <code>&lt;tg-emoji&gt;</code> exist, only the first one can be extracted</li>
 </ul>
 
 <p>Example:</p>
 
 <pre><code>InlineKeyboardButton(
     text="Accept",
-    style="success",
     icon_custom_emoji_id="5774022692642492953",
     callback_data="accept"
 )</code></pre>
@@ -69,8 +68,6 @@
 <hr>
 
 <h3>🎨 Colored Inline Button Styles</h3>
-
-<p>Telegram Bot API supports button styling:</p>
 
 <table>
 <tr><th>Style</th><th>Color</th></tr>
@@ -89,12 +86,16 @@
 <pre><code>def convert_to_html(message: Message) -&gt; str:
     return getattr(message, "html_text", message.text or "")</code></pre>
 
+<hr>
+
 <h3>2️⃣ Extract emoji for inline button</h3>
 
 <pre><code>import re
 
 match = re.search(r'emoji-id="(\d+)"', html_text)
 emoji_id = match.group(1) if match else None</code></pre>
+
+<hr>
 
 <h3>3️⃣ Create inline button</h3>
 
@@ -127,7 +128,7 @@ emoji_id = match.group(1) if match else None</code></pre>
 
 <hr>
 
-<h2>🧰 Tech Stack</h2>
+<h3>🧰 Tech Stack</h3>
 
 <ul>
   <li>Python 3.10+</li>
@@ -143,7 +144,7 @@ emoji_id = match.group(1) if match else None</code></pre>
 
 <h3>📌 Обзор</h3>
 
-<p>Этот репозиторий демонстрирует правильную работу с Telegram <code>&lt;tg-emoji&gt;</code> в:</p>
+<p>Этот репозиторий демонстрирует корректную работу с Telegram <code>&lt;tg-emoji&gt;</code> в:</p>
 
 <ul>
   <li>Тексте сообщений (Premium анимированные эмодзи)</li>
@@ -160,7 +161,7 @@ emoji_id = match.group(1) if match else None</code></pre>
 
 <h3>✅ Premium Emoji в сообщениях</h3>
 
-<p>Telegram автоматически предоставляет форматированный HTML через:</p>
+<p>Telegram автоматически предоставляет HTML-версию сообщения через:</p>
 
 <pre><code>message.html_text</code></pre>
 
@@ -169,8 +170,14 @@ emoji_id = match.group(1) if match else None</code></pre>
 <ul>
   <li><code>&lt;tg-emoji&gt;</code> сущности</li>
   <li>Жирный / курсивный текст</li>
-  <li>Все поддерживаемые Telegram HTML-теги</li>
+  <li>Все поддерживаемые HTML-теги Telegram</li>
 </ul>
+
+<p>Пример сохранённого JSON:</p>
+
+<pre><code>{
+  "saved_text": "&lt;tg-emoji emoji-id='5368324170671202286'&gt;🔥&lt;/tg-emoji&gt; Demo"
+}</code></pre>
 
 <hr>
 
@@ -183,9 +190,17 @@ emoji_id = match.group(1) if match else None</code></pre>
 <p><b>⚠ Ограничение Telegram:</b></p>
 
 <ul>
-  <li>Можно использовать только одну кастомную emoji на кнопку</li>
-  <li>Если передано несколько <code>&lt;tg-emoji&gt;</code>, будет извлечена только первая</li>
+  <li>Только одна кастомная emoji на кнопку</li>
+  <li>Если в тексте несколько <code>&lt;tg-emoji&gt;</code>, используется только первая</li>
 </ul>
+
+<p>Пример:</p>
+
+<pre><code>InlineKeyboardButton(
+    text="Accept",
+    icon_custom_emoji_id="5774022692642492953",
+    callback_data="accept"
+)</code></pre>
 
 <hr>
 
@@ -201,11 +216,49 @@ emoji_id = match.group(1) if match else None</code></pre>
 
 <hr>
 
+<h2>🛠 Как это работает</h2>
+
+<h3>1️⃣ Сохранение HTML-текста</h3>
+
+<pre><code>def convert_to_html(message: Message) -&gt; str:
+    return getattr(message, "html_text", message.text or "")</code></pre>
+
+<hr>
+
+<h3>2️⃣ Извлечение emoji для кнопки</h3>
+
+<pre><code>import re
+
+match = re.search(r'emoji-id="(\d+)"', html_text)
+emoji_id = match.group(1) if match else None</code></pre>
+
+<hr>
+
+<h3>3️⃣ Создание inline-кнопки</h3>
+
+<pre><code>InlineKeyboardButton(
+    text=text,
+    icon_custom_emoji_id=emoji_id,
+    callback_data="..."
+)</code></pre>
+
+<hr>
+
+<h3>⚙ Переменные окружения</h3>
+
+<pre><code>API_TOKEN=your_bot_token_here</code></pre>
+
+<p>Запуск:</p>
+
+<pre><code>python main.py</code></pre>
+
+<hr>
+
 <h3>⚠ Важные ограничения Telegram</h3>
 
 <ul>
   <li>В сообщениях можно использовать неограниченное количество <code>&lt;tg-emoji&gt;</code></li>
-  <li>В inline-кнопке — только один <code>icon_custom_emoji_id</code></li>
+  <li>В inline-кнопке допускается только один <code>icon_custom_emoji_id</code></li>
   <li>Emoji в кнопке статичная (без анимации)</li>
   <li>Владелец бота должен иметь Telegram Premium для использования кастомных emoji</li>
 </ul>
