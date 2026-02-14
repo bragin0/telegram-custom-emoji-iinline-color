@@ -143,13 +143,6 @@ pip install -r requirements.txt</code></pre>
   <li>JSON storage</li>
 </ul>
 
-<hr>
-
-<h2>📄 License</h2>
-
-<p>MIT</p>
-
-<hr>
 
 <h2>🇷🇺 Русская версия</h2>
 
