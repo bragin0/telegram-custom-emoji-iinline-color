@@ -107,14 +107,6 @@ emoji_id = match.group(1) if match else None</code></pre>
 
 <hr>
 
-<h2>📦 Installation</h2>
-
-<pre><code>git clone https://github.com/YOUR_USERNAME/telegram-tg-emoji-inline-demo.git
-cd telegram-tg-emoji-inline-demo
-pip install -r requirements.txt</code></pre>
-
-<p>Create <code>.env</code> file:</p>
-
 <pre><code>API_TOKEN=your_bot_token_here</code></pre>
 
 <p>Run:</p>
