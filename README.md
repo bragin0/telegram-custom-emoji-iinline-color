@@ -111,6 +111,7 @@ emoji_id = match.group(1) if match else None</code></pre>
 
 <pre><code>git clone https://github.com/YOUR_USERNAME/telegram-tg-emoji-inline-demo.git
 cd telegram-tg-emoji-inline-demo
+pip install -r requirements.txt</code></pre>
 
 <p>Create <code>.env</code> file:</p>
 
@@ -142,6 +143,10 @@ cd telegram-tg-emoji-inline-demo
   <li>JSON storage</li>
 </ul>
 
+<hr>
+
+
+<hr>
 
 <h2>🇷🇺 Русская версия</h2>
 
@@ -214,7 +219,6 @@ cd telegram-tg-emoji-inline-demo
 </ul>
 
 <hr>
-python main.py</code></pre>
 
 <p>В <code>.env</code>:</p>
 
